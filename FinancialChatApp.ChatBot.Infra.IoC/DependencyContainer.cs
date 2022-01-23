@@ -21,11 +21,8 @@ namespace FinancialChatApp.ChatBot.Infra.IoC
                 return new RabbitMQBus(sp.GetService<IMediator>(), scopeFactory);
             });
 
-            // Domain Banking Commands
+            // Domain Commands
             services.AddTransient<IRequestHandler<CreateChatMessageSendCommand, bool>, ChatMessageSendCommandHandler>();
-
-            // Domain Transfer Commands
-
 
             // Application Services
             services.AddTransient<IChatBotService, ChatBotService>();
