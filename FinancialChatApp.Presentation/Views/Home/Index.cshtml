@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Collections.Generic;
+@using System.Linq;
+@using FinancialChatApp.Presentation.Models.DTO;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model ChatRoom;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@ViewBag.Chatrooms
+
+<div class="text-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <br />
+        <br />
+
+        <h1 class="display-4">Hello @User.Identity.Name!</h1>
+
+        <br />
+        <br />
+
+        @if (ViewBag.List != null && ViewBag.List.Count > 0)
+        {
+            <p>Select a chat room bellow to join</p>
+            @Html.DropDownListFor(model => model.Id, new SelectList(ViewBag.List, "Id", "Name"), "Select a chat room")
+
+            <br />
+            <br />
+
+            <button class="btn btn-primary" asp-controller="ChatRoom" asp-action="Join" type="submit">Join a Chat Room</button>
+        }
+        else
+        {
+            <p>Create a chat room and start a chat right now with your friends!</p>
+
+            <button class="btn btn-primary">Create a Chat Room</button>
+        }
+    }
+    else
+    {
+        <h4>Hello and welcome to the Financial Chat App FinChat! </h4>
+        <h6>Please login or register to start!</h6>
+
+        @if (ViewBag.List != null && ViewBag.List.Count > 0)
+        {
+            <p>Select a chat room bellow to join</p>
+
+            <br />
+            <br />
+            @using (Html.BeginForm("Join", "ChatRoom", FormMethod.Post))
+            {
+                @Html.DropDownList("chatRoomDDL", new SelectList(ViewBag.List, "Name", "Name"), "Select a chat room")
+                <br />
+                <br />
+                <input class="btn btn-primary" type="submit" value="Join selected Chat Room" />
+            }
+        }
+        else
+        {
+            <p>Create a chat room and start a chat right now with your friends!</p>
+
+            <button class="btn btn-primary">Create a Chat Room</button>
+        }
+    }
+</div>

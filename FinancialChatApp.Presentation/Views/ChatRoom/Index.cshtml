@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Chat Room";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row card align-items-start" style="width:100%; height:700px">
+
+        <div class="col-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Online</h5>
+                    <p class="card-text">Fernando</p>
+                    <p class="card-text">Fernando</p>
+                    <p class="card-text">Fernando</p>
+                    <p class="card-text">Fernando</p>
+                    <p class="card-text">Fernando</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Chat Messages</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card row align-items-start" style="width:75%; height:100px;">
+
+        <div class="card" style="width:100%; height:100%">
+            @using (Html.BeginForm("SendMessage", "ChatRoom", FormMethod.Post))
+            {
+                @Html.TextArea("message")
+                <input class="btn btn-primary" type="submit" value="Send" />
+            }
+        </div>
+    </div>
+</div>
